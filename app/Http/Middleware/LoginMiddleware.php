@@ -16,8 +16,8 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->input('token')) {
-            $check =  User::where('token', $request->input('token'))->first();
+        if ($request->header('token')) {
+            $check =  User::where('token', $request->header('token'))->first();
 
             if (!$check) {
                 return response('Token Tidak Valid.', 401);
